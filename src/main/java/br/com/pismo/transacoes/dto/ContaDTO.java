@@ -18,6 +18,4 @@ public class ContaDTO extends BaseDTO {
 
     private String numDocumento;
 
-    private List<TransacaoDTO> transacoes;
-
 }
