@@ -25,8 +25,8 @@ public class ContaController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{accountId}")
-    public ResponseEntity buscarConta(@PathVariable("accountId") Integer idConta) {
+    @GetMapping("/{idConta}")
+    public ResponseEntity buscarConta(@PathVariable("idConta") Integer idConta) {
         ContaDTO conta = mapper.convert(contaService.buscarConta(idConta), ContaDTO.class);
         return ResponseEntity.ok(conta);
     }

@@ -1,7 +1,9 @@
 package br.com.pismo.transacoes.mapper;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
+@Component("objectMapper")
 public class ObjectMapper {
 
     private ModelMapper modelMapper;
