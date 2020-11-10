@@ -1,8 +1,6 @@
 package br.com.pismo.transacoes.controller;
 
 
-import br.com.pismo.transacoes.domain.Conta;
-import br.com.pismo.transacoes.dto.TransacaoDTO;
 import br.com.pismo.transacoes.dto.TransacaoFinanceiraDTO;
 import br.com.pismo.transacoes.mapper.ObjectMapper;
 import br.com.pismo.transacoes.service.TransacaoService;

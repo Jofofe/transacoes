@@ -33,6 +33,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        log.debug("manipulação de MethodArgumentNotValidException...");
         List<String> errors = getErrors(ex);
         return new ResponseEntity<>(errors, status);
     }
