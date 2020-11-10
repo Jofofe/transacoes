@@ -22,8 +22,6 @@ public class TransacaoDTO extends BaseDomain {
 
     private Date dataTransacao;
 
-    private ContaDTO conta;
-
     private TipoOperacaoDTO tipoOperacao;
 
 }

@@ -14,6 +14,6 @@ public class TipoOperacaoDTO extends BaseDTO {
 
     private Integer id;
 
-    private String descOperacao;
+    private String descricao;
 
 }
