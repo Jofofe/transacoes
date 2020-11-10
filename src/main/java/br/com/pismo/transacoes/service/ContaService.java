@@ -1,6 +1,7 @@
 package br.com.pismo.transacoes.service;
 
 import br.com.pismo.transacoes.domain.Conta;
+import br.com.pismo.transacoes.exception.ContaExistenteException;
 import br.com.pismo.transacoes.exception.ContaNaoEncontradaException;
 import br.com.pismo.transacoes.repository.ContaRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +18,11 @@ public class ContaService extends AbstractService<Conta, Integer, ContaRepositor
 
     @Transactional
     public void incluirConta(Conta conta) {
-        repository.save(conta);
+        if(!repository.findByNumDocumento(conta.getNumDocumento()).isPresent()) {
+            repository.save(conta);
+        } else {
+            throw new ContaExistenteException();
+        }
     }
 
     public Conta buscarConta(Integer id) {

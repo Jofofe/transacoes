@@ -1,5 +1,6 @@
 package br.com.pismo.transacoes.exception.handler;
 
+import br.com.pismo.transacoes.exception.ContaExistenteException;
 import br.com.pismo.transacoes.exception.ContaNaoEncontradaException;
 import br.com.pismo.transacoes.exception.NenhumaOperacaoEncontradaException;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity contaNaoEncontrada(ContaNaoEncontradaException ex, WebRequest request) {
         log.debug("manipulação de ContaNaoEncontradaException...");
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = {ContaExistenteException.class})
+    public ResponseEntity contaExistente(ContaExistenteException ex, WebRequest request) {
+        log.debug("manipulação de ContaExistenteException...");
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = {NenhumaOperacaoEncontradaException.class})

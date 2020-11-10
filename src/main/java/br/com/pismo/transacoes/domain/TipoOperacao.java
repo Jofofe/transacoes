@@ -1,9 +1,12 @@
 package br.com.pismo.transacoes.domain;
 
-import br.com.pismo.transacoes.enums.Operacao;
+import br.com.pismo.transacoes.enums.EnumOperacaoMatematica;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "TIPOOPERACAO")
@@ -22,10 +25,7 @@ public class TipoOperacao extends BaseDomain {
     @Column(name = "DESCOPERACAO", nullable = false)
     private String descricao;
 
-    public TipoOperacao(Operacao operacao) {
-        this.id = operacao.getId();
-        this.descricao = operacao.getDescricao();
-    }
-
+    @Column(name = "OPERACAOMATEMATICA", nullable = false)
+    private EnumOperacaoMatematica operacaoMatematica;
 
 }
