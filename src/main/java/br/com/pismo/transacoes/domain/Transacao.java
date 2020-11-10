@@ -21,18 +21,18 @@ public class Transacao extends BaseDomain {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "VALORTRANSACAO")
+    @Column(name = "VALORTRANSACAO", nullable = false)
     private BigDecimal valorTransacao;
 
-    @Column(name = "DATATRANSACAO")
+    @Column(name = "DATATRANSACAO", nullable = false)
     private Date dataTransacao;
 
     @ManyToOne
-    @JoinColumn(name = "IDCONTA", referencedColumnName = "IDCONTA")
+    @JoinColumn(name = "IDCONTA", nullable = false, referencedColumnName = "IDCONTA")
     private Conta conta;
 
     @ManyToOne
-    @JoinColumn(name = "IDTIPOOPERACAO")
+    @JoinColumn(name = "IDTIPOOPERACAO", nullable = false)
     private TipoOperacao tipoOperacao;
 
 }

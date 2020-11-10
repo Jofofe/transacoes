@@ -17,10 +17,9 @@ public class TipoOperacao extends BaseDomain {
 
     @Id
     @Column(name = "IDTIPOOPERACAO")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "DESCOPERACAO")
+    @Column(name = "DESCOPERACAO", nullable = false)
     private String descricao;
 
     public TipoOperacao(Operacao operacao) {

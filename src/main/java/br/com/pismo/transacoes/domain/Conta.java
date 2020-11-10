@@ -26,7 +26,7 @@ public class Conta extends BaseDomain {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "NUMDOCUMENTO")
+    @Column(name = "NUMDOCUMENTO", nullable = false)
     private String numDocumento;
 
     @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)

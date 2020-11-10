@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/transacao")
 public class TransacaoController {
@@ -25,7 +27,7 @@ public class TransacaoController {
     }
 
     @PostMapping
-    public ResponseEntity criarTransacao(@RequestBody TransacaoFinanceiraDTO transacaoFinanceiraDTO) {
+    public ResponseEntity criarTransacao(@Valid @RequestBody TransacaoFinanceiraDTO transacaoFinanceiraDTO) {
         transacaoService.criarTransacao(transacaoFinanceiraDTO);
         return ResponseEntity.ok().build();
     }

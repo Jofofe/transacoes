@@ -1,6 +1,6 @@
 package br.com.pismo.transacoes.enums;
 
-import br.com.pismo.transacoes.exception.NenhumaOperacaoEncontrada;
+import br.com.pismo.transacoes.exception.NenhumaOperacaoEncontradaException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -18,13 +18,13 @@ public enum Operacao implements Serializable {
     private Integer id;
     private String descricao;
 
-    public static Operacao valueOfById(final Integer id) throws NenhumaOperacaoEncontrada {
+    public static Operacao valueOfById(final Integer id) throws NenhumaOperacaoEncontradaException {
         for(Operacao operacao : Operacao.values()) {
             if(operacao.getId() == id) {
                 return operacao;
             }
         }
-        throw new NenhumaOperacaoEncontrada();
+        throw new NenhumaOperacaoEncontradaException();
     }
 
 }

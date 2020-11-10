@@ -7,6 +7,8 @@ import br.com.pismo.transacoes.service.ContaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/conta")
 public class ContaController {
@@ -20,7 +22,7 @@ public class ContaController {
     }
 
     @PostMapping
-    public ResponseEntity incluirConta(@RequestBody ContaDTO conta) {
+    public ResponseEntity incluirConta(@Valid @RequestBody ContaDTO conta) {
         contaService.incluirConta(mapper.convert(conta, Conta.class));
         return ResponseEntity.ok().build();
     }
