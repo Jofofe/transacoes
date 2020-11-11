@@ -11,6 +11,7 @@ import br.com.pismo.transacoes.repository.TipoOperacaoRepository;
 import br.com.pismo.transacoes.repository.TransacaoRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -29,6 +30,7 @@ public class TransacaoService extends AbstractService<Transacao, Integer, Transa
         this.tipoOperacaoRepository = tipoOperacaoRepository;
     }
 
+    @Transactional
     public void criarTransacao(TransacaoFinanceiraDTO transacaoFinanceiraDTO) {
         Conta conta = contaRepository.findById(transacaoFinanceiraDTO.getIdConta())
                 .orElseThrow(ContaNaoEncontradaException::new);

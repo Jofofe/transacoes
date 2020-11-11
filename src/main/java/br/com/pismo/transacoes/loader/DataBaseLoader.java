@@ -1,22 +1,28 @@
 package br.com.pismo.transacoes.loader;
 
+import br.com.pismo.transacoes.domain.Conta;
 import br.com.pismo.transacoes.domain.TipoOperacao;
+import br.com.pismo.transacoes.domain.Transacao;
 import br.com.pismo.transacoes.enums.EnumOperacaoMatematica;
+import br.com.pismo.transacoes.repository.ContaRepository;
 import br.com.pismo.transacoes.repository.TipoOperacaoRepository;
+import br.com.pismo.transacoes.repository.TransacaoRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.math.BigDecimal;
+import java.util.Date;
 
 @Component
 public class DataBaseLoader implements CommandLineRunner {
 
 	private final TipoOperacaoRepository tipoOperacaoRepository;
+	private final ContaRepository contaRepository;
 
-	private static final Short OPERACAO_POSIVITA = 1;
-	private static final Short OPERACAO_NEGATIVA = -1;
-
-
-	public DataBaseLoader(TipoOperacaoRepository tipoOperacaoRepository) {
+	public DataBaseLoader(TipoOperacaoRepository tipoOperacaoRepository,
+						  ContaRepository contaRepository) {
 		this.tipoOperacaoRepository = tipoOperacaoRepository;
+		this.contaRepository = contaRepository;
 	}
 
 	@Override
@@ -29,5 +35,14 @@ public class DataBaseLoader implements CommandLineRunner {
 				.operacaoMatematica(EnumOperacaoMatematica.SUBTRACAO).build());
 		this.tipoOperacaoRepository.save(TipoOperacao.builder().id(4).descricao("PAGAMENTO")
 				.operacaoMatematica(EnumOperacaoMatematica.ADICAO).build());
+
+		Conta conta = Conta.builder().numDocumento("16031880").build();
+		conta.addTransacao(Transacao.builder()
+				.tipoOperacao(this.tipoOperacaoRepository.findById(4).get())
+				.valorTransacao(new BigDecimal(2000))
+				.dataTransacao(new Date())
+				.build());
+		this.contaRepository.save(conta);
+
 	}
 }

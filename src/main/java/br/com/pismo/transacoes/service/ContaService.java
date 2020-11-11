@@ -26,6 +26,7 @@ public class ContaService extends AbstractService<Conta, Integer, ContaRepositor
         }
     }
 
+    @Transactional
     public Conta buscarConta(Integer id) {
         Conta conta = repository.findById(id).orElseThrow(ContaNaoEncontradaException::new);
         Hibernate.initialize(conta.getTransacoes());
