@@ -5,6 +5,7 @@ import br.com.pismo.transacoes.exception.ContaExistenteException;
 import br.com.pismo.transacoes.exception.ContaNaoEncontradaException;
 import br.com.pismo.transacoes.repository.ContaRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +27,9 @@ public class ContaService extends AbstractService<Conta, Integer, ContaRepositor
     }
 
     public Conta buscarConta(Integer id) {
-        return repository.findById(id).orElseThrow(ContaNaoEncontradaException::new);
+        Conta conta = repository.findById(id).orElseThrow(ContaNaoEncontradaException::new);
+        Hibernate.initialize(conta.getTransacoes());
+        return conta;
     }
 
 }
