@@ -1,8 +1,7 @@
 package br.com.pismo.transacoes.controller;
 
-import br.com.pismo.transacoes.domain.Conta;
 import br.com.pismo.transacoes.dto.ContaDTO;
-import br.com.pismo.transacoes.dto.CriacaoContaDTO;
+import br.com.pismo.transacoes.dto.InformacaoContaDTO;
 import br.com.pismo.transacoes.mapper.ObjectMapper;
 import br.com.pismo.transacoes.service.ContaService;
 import io.swagger.annotations.*;
@@ -10,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Collection;
 
 @RestController
 @RequestMapping("/conta")
@@ -32,8 +30,8 @@ public class ContaController {
             @ApiResponse(code = 400, message = "Conta já existente"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
-    public ResponseEntity incluirConta(@Valid @RequestBody CriacaoContaDTO criacaoConta) {
-        contaService.incluirConta(criacaoConta);
+    public ResponseEntity incluirConta(@Valid @RequestBody InformacaoContaDTO informacaoConta) {
+        contaService.incluirConta(informacaoConta);
         return ResponseEntity.ok().build();
     }
 

@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 @Builder
 @EqualsAndHashCode(callSuper=false)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CriacaoContaDTO extends BaseDTO {
+public class InformacaoContaDTO extends BaseDTO {
 
     @NotBlank(message = "{numDocumento.not.blank}")
     private String numDocumento;

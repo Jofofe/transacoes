@@ -1,7 +1,7 @@
 package br.com.pismo.transacoes.service;
 
 import br.com.pismo.transacoes.domain.Conta;
-import br.com.pismo.transacoes.dto.CriacaoContaDTO;
+import br.com.pismo.transacoes.dto.InformacaoContaDTO;
 import br.com.pismo.transacoes.exception.ContaExistenteException;
 import br.com.pismo.transacoes.exception.ContaNaoEncontradaException;
 import br.com.pismo.transacoes.repository.ContaRepository;
@@ -19,9 +19,9 @@ public class ContaService extends AbstractService<Conta, Integer, ContaRepositor
     }
 
     @Transactional
-    public void incluirConta(CriacaoContaDTO criacaoConta) {
-        if(!repository.findByNumDocumento(criacaoConta.getNumDocumento()).isPresent()) {
-            repository.save(Conta.builder().numDocumento(criacaoConta.getNumDocumento()).build());
+    public void incluirConta(InformacaoContaDTO informacaoConta) {
+        if(!repository.findByNumDocumento(informacaoConta.getNumDocumento()).isPresent()) {
+            repository.save(Conta.builder().numDocumento(informacaoConta.getNumDocumento()).build());
         } else {
             throw new ContaExistenteException();
         }
