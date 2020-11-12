@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -13,10 +12,9 @@ import javax.validation.constraints.NotNull;
 @Builder
 @EqualsAndHashCode(callSuper=false)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ContaDTO extends BaseDTO {
+public class CriacaoContaDTO extends BaseDTO {
 
-    private Integer id;
-
+    @NotBlank(message = "{numDocumento.not.blank}")
     private String numDocumento;
 
 }

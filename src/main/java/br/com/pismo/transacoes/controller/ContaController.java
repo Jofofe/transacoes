@@ -2,6 +2,7 @@ package br.com.pismo.transacoes.controller;
 
 import br.com.pismo.transacoes.domain.Conta;
 import br.com.pismo.transacoes.dto.ContaDTO;
+import br.com.pismo.transacoes.dto.CriacaoContaDTO;
 import br.com.pismo.transacoes.mapper.ObjectMapper;
 import br.com.pismo.transacoes.service.ContaService;
 import io.swagger.annotations.*;
@@ -31,8 +32,8 @@ public class ContaController {
             @ApiResponse(code = 400, message = "Conta já existente"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
-    public ResponseEntity incluirConta(@Valid @RequestBody ContaDTO conta) {
-        contaService.incluirConta(mapper.convert(conta, Conta.class));
+    public ResponseEntity incluirConta(@Valid @RequestBody CriacaoContaDTO criacaoConta) {
+        contaService.incluirConta(criacaoConta);
         return ResponseEntity.ok().build();
     }
 

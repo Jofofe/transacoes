@@ -2,6 +2,7 @@ package br.com.pismo.transacoes.service;
 
 import br.com.pismo.transacoes.TransacoesApplication;
 import br.com.pismo.transacoes.domain.Conta;
+import br.com.pismo.transacoes.dto.CriacaoContaDTO;
 import br.com.pismo.transacoes.exception.ContaNaoEncontradaException;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class ContaServiceTest {
 
     @Test
     public void testarIncluirConta() {
-        contaService.incluirConta(Conta.builder().numDocumento("1313").build());
+        contaService.incluirConta(CriacaoContaDTO.builder().numDocumento("1313").build());
     }
 
     @Test(expected = ContaNaoEncontradaException.class)
