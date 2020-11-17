@@ -4,6 +4,7 @@ import br.com.pismo.transacoes.TransacoesApplication;
 import br.com.pismo.transacoes.domain.Conta;
 import br.com.pismo.transacoes.dto.TransacaoFinanceiraDTO;
 import br.com.pismo.transacoes.exception.ContaNaoEncontradaException;
+import br.com.pismo.transacoes.exception.CreditoNaoDisponivelException;
 import br.com.pismo.transacoes.exception.NenhumaOperacaoEncontradaException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,6 +47,15 @@ public class TransacaoServiceTest {
                 .idConta(1)
                 .idOperacao(5)
                 .valorTransacao(BigDecimal.valueOf(2000))
+                .build());
+    }
+
+    @Test(expected = CreditoNaoDisponivelException.class)
+    public void testarCriarTransacaoComCreditoNaoDisponivel() {
+        transacaoService.criarTransacao(TransacaoFinanceiraDTO.builder()
+                .idConta(1)
+                .idOperacao(1)
+                .valorTransacao(BigDecimal.valueOf(3000))
                 .build());
     }
 

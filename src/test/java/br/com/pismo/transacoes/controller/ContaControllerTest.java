@@ -6,14 +6,18 @@ import br.com.pismo.transacoes.util.Util;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import com.google.gson.Gson;
+
+import java.math.BigDecimal;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 
 @RunWith(SpringRunner.class)
@@ -43,6 +47,18 @@ public class ContaControllerTest extends AbstractBaseControllerTest {
         )
                 .andDo(print())
                 .andExpect(Util.statusMatcher);
+    }
+
+    @Test
+    public void testarIncluirContaComCreditoNegativo() throws Exception {
+        mockMvc.perform(post("/conta")
+                .content(new Gson().toJson(ContaDTO.builder().numDocumento("131313")
+                        .creditoDisponivel(BigDecimal.valueOf(-2000)).build()).getBytes())
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_JSON_VALUE)
+        )
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
     }
 
 }

@@ -1,8 +1,6 @@
 package br.com.pismo.transacoes.exception.handler;
 
-import br.com.pismo.transacoes.exception.ContaExistenteException;
-import br.com.pismo.transacoes.exception.ContaNaoEncontradaException;
-import br.com.pismo.transacoes.exception.NenhumaOperacaoEncontradaException;
+import br.com.pismo.transacoes.exception.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -36,6 +34,18 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity nenhumaOperacaoEncontrada(NenhumaOperacaoEncontradaException ex, WebRequest request) {
         log.debug("manipulação de NenhumaOperacaoEncontrada...");
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = {CreditoNaoDisponivelException.class})
+    public ResponseEntity creditoNaoDisponivel(CreditoNaoDisponivelException ex, WebRequest request) {
+        log.debug("manipulação de CreditoNaoDisponivelException...");
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {LimiteNegativoException.class})
+    public ResponseEntity limiteNegativo(LimiteNegativoException ex, WebRequest request) {
+        log.debug("manipulação de LimiteNegativoException...");
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @Override

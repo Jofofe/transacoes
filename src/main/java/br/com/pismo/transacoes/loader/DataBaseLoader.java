@@ -36,7 +36,7 @@ public class DataBaseLoader implements CommandLineRunner {
 		this.tipoOperacaoRepository.save(TipoOperacao.builder().id(4).descricao("PAGAMENTO")
 				.operacaoMatematica(EnumOperacaoMatematica.ADICAO).build());
 
-		Conta conta = Conta.builder().numDocumento("16031880").build();
+		Conta conta = Conta.builder().numDocumento("16031880").creditoDisponivel(BigDecimal.valueOf(2000)).build();
 		conta.addTransacao(Transacao.builder()
 				.tipoOperacao(this.tipoOperacaoRepository.findById(4).get())
 				.valorTransacao(new BigDecimal(2000))

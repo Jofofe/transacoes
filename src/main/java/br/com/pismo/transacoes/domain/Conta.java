@@ -3,6 +3,7 @@ package br.com.pismo.transacoes.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -28,6 +29,9 @@ public class Conta extends BaseDomain {
 
     @Column(name = "NUMDOCUMENTO", nullable = false)
     private String numDocumento;
+
+    @Column(name = "CREDITODISPONIVEL", nullable = false)
+    private BigDecimal creditoDisponivel;
 
     @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude

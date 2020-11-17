@@ -71,4 +71,20 @@ public class TransacaoControllerTest extends AbstractBaseControllerTest  {
                 .andExpect(status().is4xxClientError());
     }
 
+    @Test
+    public void testarCriarTransacaoSemCreditoDisponivel() throws Exception {
+        mockMvc.perform(post("/transacao")
+                .content(new Gson().toJson(TransacaoFinanceiraDTO.builder()
+                        .idConta(1)
+                        .idOperacao(1)
+                        .valorTransacao(BigDecimal.valueOf(3000))
+                        .build())
+                        .getBytes())
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_JSON_VALUE)
+        )
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
 }
